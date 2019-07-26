@@ -1,32 +1,11 @@
-<h2 class="text-center">Inscripción San Saru</h2>
-<div>
-  <p class="text-center">El Agile Open Camp cuenta con una cantidad de lugares limitados. <%= aoc_limit %> en este <%= aoc_name %>.
-    El evento se llevará a cabo los días <%= aoc_dates %> en el <%= aoc_venue %>, <%= aoc_venue_location %>.
-    Como no queremos ser los organizadores los que seleccionemos quienes participan y quienes no, preferimos un enfoque más horizontal, participativo y descentralizado. Así que creamos un método mediante el cuál se hará una elección de postulantes distribuida entre todos los participantes al que llamamos método "San Saru".
-    <br>
-  </p>
-
-  <p class="text-center"><strong>Debajo te contamos más en detalle de qué se trata y por qué lo hicimos así. El cuento corto es: tienes que postularte completando tus datos usando el botón INSCRÍBETE AHORA que está debajo de este párrafo. En unos días comenzaremos el proceso de selección, y si eres elegido te enviaremos un email con las instrucciones; deberás pagar <%= aoc_reserve %> como adelanto (el precio máximo será <%= aoc_price %> pero si conseguimos más sponsors, disminurá (esperamos que cueste bastante menos); y por último, si aún hay lugares disponibles, podrás elegir a otros participantes.
-  </strong></p>
-
-  <div class="card border-warning">
-    <div class="card-body text-warning">
-      <p class="card-text text-center"><strong>Importante: </strong>El AOC es un evento sin fines de lucro. Todo lo que se recauda se utiliza pagar los costos del evento. Incluso los organizadores pagan lo mismo que el resto de participantes.</p>
-    </div>
-  </div>
-  <br>
-
-  <div style="text-align: center;">
-    <%= button_to "Inscríbete ahora", new_user_registration_path, :class => 'btn btn-warning btn-lg btn-block', :method => :get %>
-  </div>
-
+<h2 class="text-center">Agile Open Camp - San Saru</h2>
   <br><br>
 
   <p>
-    <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">¿Por qué se llama san saru?</button>
+    <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">¿Por qué se llama san saru?</button>
   </p>
 
-  <div class="collapse" id="collapseExample" style="">
+  <div class="collapse show" id="collapseExample" style="">
     <div class="card card-body">
       <h3>¿Por qué se llama san saru?</h3>
       <div class="row">
@@ -35,7 +14,7 @@
             <div class="panel-body">
 
               <div style="text-align:center; ">
-                <img style="width: 90%" alt="" class="ut-animate-image animated fadeIn" data-effecttype="image" data-effect="fadeIn" src="http://www.onmarkproductions.com/assets/images/lr-monkeys-hase-1646-edo-TN.JPG">
+                <img style="width: 40%" alt="" class="ut-animate-image animated fadeIn" data-effecttype="image" data-effect="fadeIn" src="http://www.onmarkproductions.com/assets/images/lr-monkeys-hase-1646-edo-TN.JPG">
               </div>
               <p>San saru es un término japonés que se podría traducir como “Los tres monos sabios” y representado por la imagen anterior. El concepto tiene varias interpretaciones. La que nos gusta y la que
                 nos llevó a elegir este nombre para el método es la siguiente: Cuenta la leyenda que fueron enviados
@@ -43,8 +22,8 @@
                 algunas limitaciones.
               </p>
 
-              <p>
-              </p><ul>
+
+              <ul>
               <li>
                 Kikazaru, el mono sordo, era el encargado de utilizar el sentido de la vista para observar a quienes realizaban malas acciones
                 y comunicárselo a Mizaru, mediante la voz.
@@ -71,9 +50,7 @@
               </p>
 
               <div class="card border-info">
-
                 <div class="card-body text-info text-center">
-
                   ESTA INTERPRETACIÓN NOS EVOCA A ACEPTAR DISCAPACIDADES PROPIAS Y AJENAS, COLABORAR, FORMAR EQUIPOS MULTIFUNCIONALES PARA
                   LOGRAR EL ÉXITO. ¿LES SUENA FAMILIAR?
                 </div>
@@ -84,65 +61,3 @@
       </div>
     </div><br>
   </div>
-
-
-  <br><h3 class="text-center">¿Cómo funciona?</h3>
-  <hr class="dark">
-  <div class="row">
-    <div class="col-sm-12">
-      <p>El proceso consta de tres etapas:</p>
-      <ul>
-        <li style="padding-bottom: 20px">
-          <strong>Postulación: </strong>Los interesados en participar nos cuentan quiénes son, a qué se dedican, su relación con la agilidad, que ideas pueden aportar al evento y qué esperan llevarse completando un formulario.</li>
-        <li style="padding-bottom: 20px">
-          <strong>Selección: </strong><%= aoc_monkeys %> seleccionarán, cada un@, a dos postulantes
-          para participar del evento. Cada persona seleccionada deberá elegir otras dos postulantes, y así sucesivamente. La personas seleccionadas serán informadas oportunamente y se les indicará cómo continuar.</li>
-        <li style="padding-bottom: 20px">
-          <strong>Inscripción: </strong>Las personas seleccionadas deben hacer efectiva su inscripción una vez sean notificadas que han sido seleccionadas, abonando el adelanto de <%= aoc_reserve %> (ver abajo “Costo de inscripción”). </li>
-      </ul>
-    </div>
-  </div>
-  <br>
-
-  <h3 class="text-center"> Costo de inscripción</h3>
-  <hr class="dark">
-  <div class="card border-warning">
-    <div class="card-body text-warning">
-      <p class="card-text text-center"><strong>Importante: </strong>¡Para postularte no hay que pagar nada!
-    </div>
-  </div>
-  <br>
-
-  <p class="text-center">Primero debes postularte. Una vez alguien te seleccione deberás pagar <%= aoc_reserve %> como adelanto del valor total que será como máximo de <strong><%= aoc_price %></strong>, pero que irá disminuyendo conforme consigamos más sponsors.</p>
-  <p class="text-center">Si nos ayudas a conseguir más sponsors el valor disminuye para todos. Poco antes del evento pagaremos el total restante, que esperamos que sea bastante más bajo.</p>
-
-
-  <div class="card border-info">
-    <div class="card-body text-info">
-      <p class="card-text">
-        <p>
-          El precio incluye:
-        </p>
-      <ul>
-        <li>
-          <strong>Alojamiento:</strong> En habitaciones compartidas con número variable de personas.</li>
-        <li>
-          <strong>Alimentación completa</strong>: <%= aoc_food %>.</li>
-      </ul>
-      </p>
-    </div>
-  </div>
-  <br>
-
-  <p class="text-center">Nos sustentamos con el aporte de nuestros sponsors. ¡Cuantos más consigamos, más barato será! Así que necesitamos tu ayuda recomendando o consiguiendo sponsors. Cualquier sugerencia, escribinos a <a href="mailto:<%= aoc_mail %>"><%= aoc_mail %></a>
-  </p>
-
-  <br>
-
-  <div style="text-align: center;">
-    <%= button_to "Inscríbete ahora", new_user_registration_path, :class => 'btn btn-warning btn-lg btn-block', :method => :get %>
-  </div>
-
-
-
-</div>

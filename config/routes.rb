@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { confirmations: 'confirmations' }
+  devise_for :users, controllers: { confirmations: 'confirmations', sessions: 'sessions' }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'static_pages/home'
   get '/terms', to: 'static_pages#terms'
@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :profiles, except: %i[edit new create update show destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
+  # root 'static_pages#home_v2'
   get '/home', to: 'home#show'
   get '/home/edit', to: 'home#edit'
   get '/home/new', to: 'home#new'
@@ -22,4 +23,11 @@ Rails.application.routes.draw do
 
   get 'cities/:country', to: 'divipola#states'
   get 'cities/:country/:state', to: 'divipola#cities'
+
+  resources :events
+  resources :pages
+  resources :custom_emails
+
+  get '/:event_id/:page_path', to: 'static_pages#prepare_render'
+
 end

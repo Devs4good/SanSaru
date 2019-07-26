@@ -12,7 +12,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  belongs_to :profile, required: false
+  has_many :profiles
   has_one :invitation
   has_and_belongs_to_many :favorites,
                           class_name: 'User',
@@ -23,15 +23,28 @@ class User < ApplicationRecord
   validates :terms_of_service, :acceptance => true
   attr_accessor :user_ids
 
+  belongs_to :actual_event, class_name: 'Event', :foreign_key => 'actual_event_id', optional: true
+
+  def full_name
+    "#{name} #{lastname}"
+  end
+
+  def profile
+    profiles.where(event_id: actual_event_id).first
+  end
+
+  def organizer
+    profile&.organizer || false
+  end
 
   def invite(invited)
     invitation = Invitation.find_by(user_id: id)
     if invitation
       begin
         ActiveRecord::Base.transaction do
-          if Config.has_invitations?
+          if actual_event.has_invitations?
             formalize_invitation invitation, invited
-            Config.discount_invitation
+            actual_event.discount_invitation
           end
         end
       rescue ActiveRecord::RecordInvalid => exception
@@ -83,5 +96,5 @@ class User < ApplicationRecord
     Invitation.create!(user_id: invited.id)
   end
 end
-# TODO: poner textos en español y plantillas de email
 # TODO no permitir borrar cuenta
+

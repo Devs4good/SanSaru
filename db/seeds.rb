@@ -1,12 +1,9 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-User.create(name: 'aoc', lastname: 'admin', email: 'martin@salias.com.ar', password: 'aocAdminBrc2019!',
-            password_confirmation: 'aocAdminBrc2019!', admin: true, terms_of_service: true)
+# TODO this part has problems with the account validation token
+User.create(name: 'aoc', lastname: 'admin', email: 'yamit.cardenas@gmail.com', password: 'aocAdmin!',
+            password_confirmation: 'aocAdmin!', admin: true, terms_of_service: true)
 
 Agile.create(name: 'Individuos e interacciones sobre procesos y herramientas')
 Agile.create(name: 'Software funcionando sobre documentación extensiva')
@@ -30,5 +27,10 @@ Size.create(name: 'L')
 Size.create(name: 'XL')
 Size.create(name: 'XXL')
 
-Config.create(name: :invitaciones, value: 80)
-Config.create(name: :eleccion, value: 'false')
+event= Event.new(name: 'default',fullname:'default San Saru',
+          site: 'https://some.com',support_mail:'aoc@sansaru.com',participants: 80,ideal_price:100, price: 80,
+          reserve_price: 0, start_date: Time.now,end_date: Time.now, venue: 'street 123', monkeys: 'ciego,sordo,mudo',
+          status: :active, tickets_left: 80)
+event.add_homepage
+event.add_invitation_email
+event.save!

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_24_232923) do
+ActiveRecord::Schema.define(version: 2019_07_22_105999) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,34 @@ ActiveRecord::Schema.define(version: 2018_07_24_232923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "configs", force: :cascade do |t|
-    t.text "name"
-    t.text "value"
+  create_table "custom_emails", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "copy_to", null: false
+    t.text "template", null: false
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_custom_emails_on_event_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "fullname", null: false
+    t.string "site", null: false
+    t.string "support_mail", null: false
+    t.integer "participants", null: false
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.decimal "reserve_price", precision: 8, scale: 2
+    t.decimal "ideal_price", precision: 8, scale: 2
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.string "venue", null: false
+    t.string "venue_location", null: false
+    t.string "monkeys", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status", default: "activo"
+    t.integer "tickets_left"
   end
 
   create_table "favorites", id: false, force: :cascade do |t|
@@ -83,6 +106,15 @@ ActiveRecord::Schema.define(version: 2018_07_24_232923) do
     t.index ["user_id"], name: "index_invitations_on_user_id", unique: true
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string "path"
+    t.text "content"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_pages_on_event_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.boolean "first_time", null: false
     t.string "expectancy", null: false
@@ -102,6 +134,10 @@ ActiveRecord::Schema.define(version: 2018_07_24_232923) do
     t.string "city", default: "", null: false
     t.string "phonenumber", default: "", null: false
     t.string "telegram"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.boolean "organizer", default: false, null: false
+    t.boolean "need_mentor", default: false
     t.index ["agileRelation_id"], name: "index_profiles_on_agileRelation_id"
     t.index ["agile_id"], name: "index_profiles_on_agile_id"
     t.index ["gender_id"], name: "index_profiles_on_gender_id"
@@ -118,7 +154,6 @@ ActiveRecord::Schema.define(version: 2018_07_24_232923) do
     t.string "name", null: false
     t.string "lastname", null: false
     t.string "email", null: false
-    t.bigint "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "encrypted_password", default: "", null: false
@@ -134,11 +169,10 @@ ActiveRecord::Schema.define(version: 2018_07_24_232923) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.boolean "organizer", default: false, null: false
     t.boolean "terms_of_service", default: false
+    t.integer "actual_event_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["profile_id"], name: "index_users_on_profile_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -154,4 +188,7 @@ ActiveRecord::Schema.define(version: 2018_07_24_232923) do
   end
 
   add_foreign_key "invitations", "users"
+  add_foreign_key "profiles", "events"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "users", "events", column: "actual_event_id"
 end

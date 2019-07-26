@@ -3,11 +3,11 @@ class HomeController < ApplicationController
   helper_method :can_invite?
 
   def can_invite?(current_user)
-    unless Config.is_invitation_period_open?
+    unless current_user.actual_event.is_invitation_period_open?
       return false, 'El período de selección está cerrado'
     end
 
-    unless Config.has_invitations?
+    unless current_user.actual_event.has_invitations?
       return false, 'Lo sentimos, ya no tenemos invitaciones disponibles :('
     end
 
@@ -54,7 +54,7 @@ class HomeController < ApplicationController
 
   # GET /profiles/new
   def new
-    @aoc_name = aoc_name
+    @aoc_name = helpers.aoc_name
     @profile = current_user.profile || Profile.new
   end
 
@@ -62,10 +62,10 @@ class HomeController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    @profile.user = current_user
+    @profile.event = current_user.actual_event
     respond_to do |format|
       if @profile.save
-        current_user.profile = @profile
-        current_user.save!
         format.html { redirect_to '/home', notice: 'Profile was successfully created.' }
       else
         format.html { render :new }

@@ -22,4 +22,6 @@
 
 .byebug_history
 .idea/
+.rubocop_todo.yml
+.scannerwork/*
 .env
