@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(name: 'devs4good', lastname: 'admin', email: 'hola@devs4good.com', password: 'ForGood2019!',
-            password_confirmation: 'ForGood2019!', admin: true, terms_of_service: true)
+User.create(name: 'aoc', lastname: 'admin', email: 'martin@salias.com.ar', password: 'aocAdminBrc2019!',
+            password_confirmation: 'aocAdminBrc2019!', admin: true, terms_of_service: true)
 
 Agile.create(name: 'Individuos e interacciones sobre procesos y herramientas')
 Agile.create(name: 'Software funcionando sobre documentación extensiva')
