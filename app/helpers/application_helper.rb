@@ -2,50 +2,52 @@ module ApplicationHelper
 
   # Repetir esto en config/initializers/rails_admin.rb, en la llamada a config.main_app_name (porque es previo a esto)
   def aoc_name
-    "AOC Bariloche 2019"
+    "Developers for Good"
   end
 
   def aoc_fullname
-    "Agile Open Camp Bariloche 2019"
+    "Developers for Good - 2019"
   end
 
   def aoc_site
-    "http://argentina.agileopen.camp/"
+    "https://www.developersforgood.com/sumate.html"
   end
 
   def aoc_mail
-    "argentina@agileopen.camp"
+    "hola@devs4good.com"
   end
 
   def aoc_reserve
-    "USD 50"
+    "gratis"
   end
 
   def aoc_price
-    "USD 360"
+    "gratis"
   end
 
   def aoc_price_ideal
-    "USD 150"
+    "gratis"
   end
 
   def aoc_limit
-    75
+    0
   end
 
   def aoc_dates
-    "10 al 13 de abril de 2019"
+    ""
   end
 
+  # TODO: revisar si se puede eliminar, sólo se usa en privacidad.html.erb
   def aoc_venue
-    "Hotel Tronador"
+    ""
   end
 
+  # TODO: no se usa más
   def aoc_venue_location
-    "dentro del Parque Nacional Nahuel Huapi, en Bariloche"
+    ""
   end
 
   def aoc_monkeys
-    "Tommy Christie, María Thompson y Martín Salías"
+    "Jorge Roldán, Lara Cabrera y Juan José Zapico"
   end
 end
