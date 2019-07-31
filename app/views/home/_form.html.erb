@@ -16,7 +16,7 @@
   <fieldset>
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :country, "¿Dónde resides actualmente?" %>
+        <%= form.label :country, "¿Dónde residís actualmente?" %>
         <small>(Ciudad, Provincia o Región, País.)</small>
       </label>
       <div class="col-md-7">
@@ -105,7 +105,7 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :first_time, "¿Es la primera vez que participas en un AOC?" %>
+        <%= form.label :first_time, "¿Es la primera vez que participás en Devs4Good?" %>
       </label>
       <div class="col-md-7">
         <%= form.select :first_time, [['Si', true], ['No', false]],{},{id: :profile_first_time, class: 'custom-select'}  %>
@@ -114,47 +114,44 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :expectancy, "¿Qué esperas del evento? ¿En qué consideras que te puede ayudar?" %>
+        <%= form.label :expectancy, "¿Qué esperás del evento? ¿Por qué te interesa participar?" %>
       </label>
       <div class="col-md-7">
         <%= form.text_area :expectancy, id: :profile_expectancy, class: 'form-control input-md',style: 'height:100%;' %>
       </div>
     </div>
+
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :agileRelation_id, "Si tu relación con la agilidad fuera de una amistad dirías que son:" %>
+        <%= form.label :heard_or_see_d4g, "¿Dónde fue la primera vez que viste/escuchaste sobre Devs4Good?" %>
       </label>
       <div class="col-md-7">
-        <%= form.select(:agileRelation_id, AgileRelation.all.collect {|a| [a.name, a.id]},{},{id: :profile_agileRelation_id, class: 'custom-select'}) -%>
+        <%= form.text_area :heard_or_see_d4g, id: :profile_heard_or_see_d4g, class: 'form-control input-md',style: 'height:100%;' %>
       </div>
     </div>
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :agile_id, "Entendiendo que los cuatro valores del manifiesto son importantes, valiosos
-         y ninguno lo es más que el otro, ¿Cual tomarías si tuvieses que elegir sólo uno?" %>
+        <%= form.label :tech_stack, "¿Con qué tecnologías/stack tecnológico te sentís más cómodo/a?" %>
       </label>
       <div class="col-md-7">
-        <%= form.select(:agile_id, Agile.all.collect {|a| [a.name, a.id]},{},{id: :profile_agile_id, class: 'custom-select'}) -%>
+        <%= form.text_area :tech_stack, id: :profile_tech_stack, class: 'form-control input-md',style: 'height:100%;' %>
       </div>
     </div>
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :agile_description, "¿Por qué elegiste este valor?" %><br>
-        <small>Cuéntanos qué más hay en tu cabeza</small>
+        <%= form.label :owned_projects, "Contanos algún proyecto en el que hayas participado o creado desde cero y del cuál te sentís orgulloso ¿Por qué te gustó? (ideal si lo podes compartir un link)" %>
       </label>
       <div class="col-md-7">
-        <%= form.text_area :agile_description, id: :profile_agile_description, class: 'form-control input-md',style: 'height:100%;' %>
+        <%= form.text_area :owned_projects, id: :profile_owned_projects, class: 'form-control input-md',style: 'height:100%;' %>
       </div>
     </div>
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :hobbies, "¿Cuáles son tus intereses? ¿Tocas instrumentos?
-         ¿Haces deporte? ¿Tienes algún hobby?" %><br>
-        <small>Menciona aquello que te interesa. No necesariamente tiene que
-          estar relacionado al AOC. Queremos saber cuáles son las cosas que te encantan, además de la agilidad.</small>
+        <%= form.label :hobbies, "¿Cuáles son tus intereses? ¿Tocás instrumentos? ¿Hacés deporte? ¿Tenés algún hobby?" %><br>
+        <small>Mencioná aquello que te interesa. No necesariamente tiene que estar relacionado con Devs4Good. Queremos saber cuáles son las cosas que te encantan, además de la tecnología.</small>
       </label>
       <div class="col-md-7">
         <%= form.text_area :hobbies, id: :profile_hobbies, class: 'form-control input-md',style: 'height:100%;' %>
@@ -163,8 +160,8 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :bring, 'Cuéntanos qué "cosas" podrías traer al evento:' %><br>
-        <small>Instrumentos, parlantes, juegos, pelotas... ¡lo que sea!</small>
+        <%= form.label :bring, 'No todo es codear! Contanos qué "cosas" podrías traer al evento:' %><br>
+        <small>Instrumentos, parlantes, juegos... ¡lo que sea!</small>
       </label>
       <div class="col-md-7">
         <%= form.text_area :bring, id: :profile_bring, class: 'form-control input-md',style: 'height:100%;' %>
@@ -187,11 +184,8 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :bio, 'Cuéntanos más sobre ti:' %><br>
-        <small>Cualquier cosa que ayude a que te conozcamos mejor y
-          que sientas que no pudiste contar con las respuestas anteriores.
-          Formación, qué objetivo persigues diariamente con tu trabajo, familia,
-          algo que creas que puedes brindar al evento, etc.</small>
+        <%= form.label :bio, 'Contanos más sobre vos:' %><br>
+        <small>Cualquier cosa que ayude a que te conozcamos mejor y que sientas que no pudiste contar con las respuestas anteriores. Formación, qué objetivo perseguís diariamente con tu trabajo, familia, algo que creas que puedes brindar al evento, etc.</small>
       </label>
       <div class="col-md-7">
         <%= form.text_area :bio, id: :profile_bio, class: 'form-control input-md',style: 'height:100%;' %>
@@ -200,7 +194,7 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :gender_id, "¿Qué corte de camiseta prefieres?" %>
+        <%= form.label :gender_id, "¿Qué corte de camiseta preferís?" %>
       </label>
       <div class="col-md-7">
         <%= form.select(:gender_id, Gender.all.collect {|a| [a.name, a.id]},{},{id: :profile_gender_id, class: 'custom-select'}) -%>
@@ -210,7 +204,7 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :size_id, "¿Qué talla de camiseta prefieres?" %>
+        <%= form.label :size_id, "¿Qué talle de camiseta preferís?" %>
       </label>
       <div class="col-md-7">
         <%= form.select(:size_id, Size.all.collect {|a| [a.name, a.id]},{},{id: :profile_size_id, class: 'custom-select'}) -%>
@@ -232,7 +226,7 @@
 
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
-        <%= form.label :phonenumber, 'Dejanos tu numero de telefono' %><br>
+        <%= form.label :phonenumber, 'Dejanos tu número de telefono' %><br>
         </label>
         <div class="col-md-7">
           <%= form.text_field :phonenumber, id: :profile_phonenumber, class: 'form-control input-md' %>
@@ -242,10 +236,19 @@
     <div class="form-group row">
       <label class="col-md-5 control-label" for="textinput">
         <%= form.label :telegram, 'id de telegram:' %><br>
-        <small>Solemos usar Telegram para comunicarnos, si no lo tienes, es una buena idea instalarlo en tu movil.</small>
+        <small>Solemos usar Telegram para comunicarnos, si no lo tenés, es una buena idea instalarlo en tu móvil.</small>
       </label>
       <div class="col-md-7">
         <%= form.text_field :telegram, id: :profile_telegram, class: 'form-control input-md' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-5 control-label" for="textinput">
+        <%= form.label :linkedin, 'Perfil de Linkedin.com' %>
+      </label>
+      <div class="col-md-7">
+        <%= form.text_field :linkedin, id: :profile_linkedin, class: 'form-control input-md' %>
       </div>
     </div>
 
