@@ -7,7 +7,7 @@ class Invitation < ApplicationRecord
 
   def self.build_invitation_trees
     trees = []
-    aoc_name = "AOC"
+    aoc_name = "D4G"
     roots = Invitation.where(monkey: true)
     roots.each do |root|
       node = build_node root, aoc_name

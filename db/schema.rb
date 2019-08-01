@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_031423) do
+ActiveRecord::Schema.define(version: 2019_08_01_132200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_031423) do
     t.boolean "first_time", null: false
     t.string "expectancy", null: false
     t.bigint "agile_id"
-    t.string "agile_description", null: false
+    t.string "agile_description", default: ""
     t.string "hobbies"
     t.string "bring"
     t.string "proposal"
@@ -103,6 +103,10 @@ ActiveRecord::Schema.define(version: 2019_07_26_031423) do
     t.string "phonenumber", default: "", null: false
     t.string "telegram"
     t.string "role", null: false
+    t.string "linkedin"
+    t.text "heard_or_see_d4g"
+    t.text "tech_stack"
+    t.text "owned_projects"
     t.index ["agileRelation_id"], name: "index_profiles_on_agileRelation_id"
     t.index ["agile_id"], name: "index_profiles_on_agile_id"
     t.index ["gender_id"], name: "index_profiles_on_gender_id"

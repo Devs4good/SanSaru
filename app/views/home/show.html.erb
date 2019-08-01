@@ -21,7 +21,7 @@
         <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseGravatar" aria-expanded="false" aria-controls="collapseGravatar">¿Cómo agrego mi foto?</button>
      </div>
       <div class="row justify-content-md-center">
-        <h6>Primera vez en un AOC:
+        <h6>Primera vez en un D4G:
           <% if @profile.first_time %>
             Si
             <% else %>
@@ -44,9 +44,6 @@
       </div>
       <div class="row justify-content-md-center">
         <a class="btn btn-link" href="#expectativas">Expectativas</a>
-      </div>
-      <div class="row justify-content-md-center">
-        <a class="btn btn-link" href="#agile">Relación con la agilidad</a>
       </div>
       <div class="row justify-content-md-center">
         <a class="btn btn-link" href="#traes">Trae al evento</a>
@@ -196,20 +193,7 @@
         <p>
           <%= @profile.expectancy %>
         </p>
-        <h3 id="agile">Relación con la agilidad </h3>
-        <p>
-          <%= AgileRelation.find(@profile.agileRelation_id).name %>
-        </p>
 
-        <p>
-          <strong>Valor preferido:</strong>
-          <%= Agile.find(@profile.agile_id).name %>
-        </p>
-
-        <p>
-          <strong>Elegido por:</strong>
-          <%= @profile.agile_description %>
-        </p>
         <h3 id="traes">Trae al evento</h3>
         <p>
           <%= @profile.bring %>
@@ -218,6 +202,21 @@
         <p>
           <strong>alguna propuesta?:</strong>
           <%= @profile.proposal %>
+        </p>
+
+        <p>
+          <strong>Escuche de D4G: </strong>
+          <%= @profile.heard_or_see_d4g %>
+        </p>
+
+        <p>
+          <strong>Proyectos propios: </strong>
+          <%= @profile.owned_projects %>
+        </p>
+
+        <p>
+          <strong>Tecnologías: </strong>
+          <%= @profile.tech_stack %>
         </p>
 
       <% else %>
