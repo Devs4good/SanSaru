@@ -97,8 +97,8 @@ class HomeController < ApplicationController
   def profile_params
     params.require(:profile).permit(
       :phonenumber, :telegram, :country, :city, :state, :first_time,
-      :expectancy, :agile_id, :agile_description, :hobbies, :bring, :proposal,
-      :bio, :agileRelation_id, :gender_id, :size_id, :role,
+      :expectancy, :hobbies, :bring, :proposal, :bio, :gender_id, :size_id, :role,
+      :linkedin, :heard_or_see_d4g, :tech_stack, :owned_projects,
     )
   end
 end
