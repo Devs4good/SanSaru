@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_225600) do
+ActiveRecord::Schema.define(version: 2019_08_01_132200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_07_31_225600) do
     t.boolean "first_time", null: false
     t.string "expectancy", null: false
     t.bigint "agile_id"
-    t.string "agile_description", null: false
+    t.string "agile_description", default: ""
     t.string "hobbies"
     t.string "bring"
     t.string "proposal"
