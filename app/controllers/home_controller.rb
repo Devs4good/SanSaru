@@ -18,7 +18,7 @@ class HomeController < ApplicationController
     return false, 'Esta persona ya fue invitada' if @user.was_invite?
 
     unless current_user.was_pay?
-      return false, 'Debes pagar tu entrada antes de poder seleccionar a otras personas.'
+      return false, 'Debes ser seleccionado (a partir del 17/Agosto) para poder seleccionar a otras personas. Hay cupos limitados.'
     end
 
     [true, '']
