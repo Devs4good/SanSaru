@@ -2,6 +2,30 @@
   <div class="col-md-12">
     <h1 class="text-center">Postulados</h1>
     <p  class="text-center">(No aparece tu propio perfil, que puedes ver y editar en "MI CUENTA")</p>
+
+    <div class="card border-info mb-3">
+      <div class="card-header">
+        <h4 class="card-title text-info">
+          Cupos disponibles por rol
+        </h4>
+      </div>
+      <div class="card-body text-info">
+        <ul>
+          <% Config.invitations.each do |invitation| %>
+            <% role = Role::CONFIG_MAPPING.invert[invitation.name.to_sym] %>
+            <% if invitation.value.to_i.zero? %>
+              <li class="card-text">
+                <%= "Ya no quedan vacantes para " %> <strong><%= role %></strong>
+              </li>
+            <% else %>
+              <li class="card-text">
+                <%= "Quedan #{invitation.value.to_i} vacantes para " %> <strong><%= role %></strong>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
     <p id="notice"><%= notice %></p>
   </div>
 </div>
