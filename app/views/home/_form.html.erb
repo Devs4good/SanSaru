@@ -44,7 +44,7 @@
       </label>
 
       <div class="col-md-7">
-        <% roles = Role.all.map { |role| [role.name, role.name] } %>
+        <% roles = Role::ALL.map { |role| [role, role] } %>
         <%=
           form.select(
             :role,

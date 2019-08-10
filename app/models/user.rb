@@ -35,7 +35,7 @@ class User < ApplicationRecord
         ActiveRecord::Base.transaction do
           if Config.has_invitations?
             formalize_invitation invitation, invited
-            Config.discount_invitation
+            Config.discount_invitation(invited)
           end
         end
       rescue ActiveRecord::RecordInvalid => exception

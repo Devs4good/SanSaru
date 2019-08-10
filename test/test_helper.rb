@@ -6,4 +6,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  # Loads all rake tasks
+  Rails.application.load_tasks
 end
