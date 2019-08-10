@@ -3,8 +3,29 @@ class ProfilesController < ApplicationController
   before_action :require_login
 
   def index
-    @postulados = User.where.not(profile_id: [nil]).where.not(id: current_user.id)
-                      .order('organizer DESC, created_at ASC').paginate(page: params[:page], per_page: 10)
+    # Los usuarios que van a aparecer en el listado tienen que cumplir:
+    #   1) Están postulados (tienen un perfil creado).
+    #   2) No son el usuario actual (para evitar que una persona se seleccione a si misma).
+    #   3) No fueron invitados aún (No hay una invitación creada para ellos).
+    #   4) Todavía hay cupo para el rol que pusieron en su perfil.
+    #   5) Fueron seleccionados por el usuario actual para participar de la hackaton.
+
+    @my_invitation = current_user.invitation
+    @postulados = User.
+        joins(:profile).
+        joins('LEFT JOIN invitations ON invitations.user_id = users.id').
+        where.not(profile_id: nil).
+        where.not(users: { id: current_user.id }).
+        where(
+          '(invitations.id IS NULL AND profiles.role IN (:available_roles)) OR users.id IN (:invited_by_me)',
+          invited_by_me: [
+            @my_invitation.invited_one_id,
+            @my_invitation.invited_two_id,
+          ],
+          available_roles: Role.with_available_invitations,
+        ).
+        order('organizer DESC, created_at ASC').
+        paginate(page: params[:page], per_page: 10)
   end
 
   def favorites

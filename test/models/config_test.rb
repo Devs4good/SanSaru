@@ -29,6 +29,13 @@ class ConfigTest < ActiveSupport::TestCase
     assert_equal Config.count_invitations, 78
   end
 
+  test 'nombre de las configuraciones que definen invitaciones que aún tienen cupo' do
+    Config.create(name: :cupo_dev_sr, value: 16)
+    Config.create(name: :cupo_dev_jr, value: 0)
+
+    assert_equal Config.available_invitation_names, ['cupo_dev_sr']
+  end
+
   test 'cupos disponibles para un determinado rol' do
     crear_tabla_de_cupo_2019
 
@@ -75,6 +82,9 @@ class ConfigTest < ActiveSupport::TestCase
       expectancy: 'I expect to be at least 6 smalltalk projects',
       bio: 'I did a few things related to software development.',
       role: 'Dev Sr',
+      gender_id: 1,
+      size_id: 1,
+      first_time: true,
     )
     alan_kay.save!
     alan_kay
