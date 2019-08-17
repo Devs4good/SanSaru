@@ -1,20 +1,25 @@
 class Role
-  attr_reader :name
+  ALL = [
+    'Dev Sr',
+    'Dev Jr',
+    'UX/UI Designer',
+    'Scrum Master',
+    'Testing',
+    'Product Owner',
+  ].freeze
 
-  def self.all
-    [
-      new('Dev Sr', 10, 15),
-      new('Dev Jr', 20, 22),
-      new('UX/UI Designer', 7, 10),
-      new('Scrum Master', 7, 10),
-      new('Testing', 5, 5),
-      new('Product Owner', 15, 15),
-    ]
-  end
+  CONFIG_MAPPING = {
+    'Dev Sr' => :cupo_dev_sr,
+    'Dev Jr' => :cupo_dev_jr,
+    'UX/UI Designer' => :cupo_ux_ui_designer,
+    'Scrum Master' => :cupo_scrum_master,
+    'Testing' => :cupo_testing,
+    'Product Owner' => :cupo_product_owner,
+  }.freeze
 
-  def initialize(name, ideal_quota, quota)
-    @name = name
-    @ideal_quota = ideal_quota
-    @quota = quota
+  def self.with_available_invitations
+    Config.available_invitation_names.map do |invitation|
+      CONFIG_MAPPING.invert[invitation.to_sym]
+    end
   end
 end

@@ -2,6 +2,30 @@
   <div class="col-md-12">
     <h1 class="text-center">Postulados</h1>
     <p  class="text-center">(No aparece tu propio perfil, que puedes ver y editar en "MI CUENTA")</p>
+
+    <div class="card border-info mb-3">
+      <div class="card-header">
+        <h4 class="card-title text-info">
+          Cupos disponibles por rol
+        </h4>
+      </div>
+      <div class="card-body text-info">
+        <ul>
+          <% Config.invitations.each do |invitation| %>
+            <% role = Role::CONFIG_MAPPING.invert[invitation.name.to_sym] %>
+            <% if invitation.value.to_i.zero? %>
+              <li class="card-text">
+                <%= "Ya no quedan vacantes para " %> <strong><%= role %></strong>
+              </li>
+            <% else %>
+              <li class="card-text">
+                <%= "Quedan #{invitation.value.to_i} vacantes para " %> <strong><%= role %></strong>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
     <p id="notice"><%= notice %></p>
   </div>
 </div>
@@ -15,6 +39,7 @@
         <th scope="col">Nombre</th>
         <th scope="col">Vive en</th>
         <th scope="col">Primera vez en el D4G?</th>
+        <th scope="col" width="10%">Rol</th>
         <th scope="col">Biografia</th>
         <th scope="col" colspan="1"></th>
       </tr>
@@ -22,7 +47,7 @@
 
       <tbody>
       <% @postulados.each do |postulado| %>
-        <%  invitados = Invitation.all.map(&:user_id) %>
+        <%  invitados = Invitation.pluck(:user_id) %>
         <tr style="
         background-color: <%= invitados.index(postulado.id) ? 'lightcyan;' : 'white;' %>">
           <td>
@@ -40,6 +65,7 @@
               No
             <% end %>
           </td>
+          <td><%= postulado.profile.role %></td>
           <td><%= postulado.profile.bio %></td>
           <td>
             <%= link_to "Ver perfil completo", { :controller => "home", :action => "show", :postulado => postulado }, target: "_blank" %>

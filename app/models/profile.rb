@@ -10,5 +10,5 @@ class Profile < ApplicationRecord
   validates :expectancy, presence: true
   validates :bio, presence: true
   validates :phonenumber, presence: true
-  validates :role, presence: true, inclusion: Role.all.map(&:name)
+  validates :role, presence: true, inclusion: Role::ALL
 end

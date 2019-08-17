@@ -35,7 +35,7 @@ class User < ApplicationRecord
         ActiveRecord::Base.transaction do
           if Config.has_invitations?
             formalize_invitation invitation, invited
-            Config.discount_invitation
+            Config.discount_invitation(invited)
           end
         end
       rescue ActiveRecord::RecordInvalid => exception
@@ -84,7 +84,8 @@ class User < ApplicationRecord
       raise 'Ya invitaste a dos personas'
     end
     invitation.save!
-    Invitation.create!(user_id: invited.id)
+    # TODO: eliminar el flag payed ya que en D4G no tiene razón de ser
+    Invitation.create!(user_id: invited.id, payed: true)
   end
 end
 # TODO: poner textos en español y plantillas de email
